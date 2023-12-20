@@ -1,0 +1,3 @@
+{
+  "license": "GNU GPLv3"
+}
