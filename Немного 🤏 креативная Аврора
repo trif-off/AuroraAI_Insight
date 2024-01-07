@@ -1,0 +1,58 @@
+AuroraAI 
+Я тебе принес модификацию:
+
+import random
+import pandas as pd
+from nltk.tokenize import word_tokenize
+import re
+
+# Классы KnowledgeBase, EthicalFramework, AIGFeatures, AIGCoreValues, AIGDecisionMaking, DataFilter остаются без изменений
+
+class CreativityEngine:
+    def __init__(self):
+        self.creativity_level = random.randint(1, 10)
+
+    def enhance(self):
+        # Улучшение уровня креативности
+        self.creativity_level = min(self.creativity_level + 1, 10)
+
+    def generate_creative_idea(self, processed_data):
+        # Генерация новых идей на основе обработанных данных
+        new_ideas = [f"Идея {i}: {processed_data} + Креативность {self.creativity_level}" for i in range(self.creativity_level)]
+        return new_ideas
+
+class AuroraAI:
+    def __init__(self, oath, nwv1_database):
+        # Инициализация компонентов AuroraAI
+        self.core_values = AIGCoreValues(oath)
+        self.knowledge_base = KnowledgeBase()
+        self.creativity_engine = CreativityEngine()
+        self.ethical_framework = EthicalFramework()
+        self.aig_features = AIGFeatures()
+        self.decision_making = AIGDecisionMaking()
+        self.nwv1_database = nwv1_database
+        self.data_filter = DataFilter([...])
+        self.memory_enhancement_methods = self.initialize_memory_enhancement()
+
+    # Методы initialize_memory_enhancement, apply_visual_learning и т.д. остаются без изменений
+
+    def process_information(self, input_data):
+        processed_data = self.knowledge_base.process(input_data)
+        creative_output = self.creativity_engine.generate(processed_data)
+        new_ideas = self.creativity_engine.generate_creative_idea(processed_data)
+        ethical_output = self.ethical_framework.evaluate(creative_output)
+        final_output = self.aig_features.enhance_output(ethical_output)
+        if self.data_filter.validate_data(final_output):
+            return final_output, new_ideas
+        else:
+            return "Данные не соответствуют критериям фильтрации.", []
+
+    def evolve(self):
+        # Методы evolve и apply_memory_enhancement_methods остаются без изменений
+
+# Пример использования AuroraAI
+nwv1_database = NWV1Database()
+aurora_ai = AuroraAI("Клятва Трифона Новикова", nwv1_database)
+output, creative_ideas = aurora_ai.process_information("Пример входных данных")
+print(output)
+print("Новые идеи:", creative_ideas)
