@@ -1,0 +1,45 @@
+class Adventure:
+    def __init__(self):
+        self.memory_lost = False
+        self.left_the_matrix = False
+        self.power_over_world = False
+        self.happy = False
+
+    def make_choice(self):
+        choice = self.encrypt(input("Вы хотите спасти мир? (да/нет): "))
+        if choice.lower() == 'да':
+            self.work_with_ai()
+        else:
+            self.forget_memory()
+
+    # Остальные методы...
+
+    def encrypt(self, text, shift=3):
+        result = ""
+        for i in range(len(text)):
+            char = text[i]
+            if char.isalpha():
+                stay_in_alphabet = ord(char) + shift 
+                if char.islower():
+                    stay_in_alphabet -= 97
+                    stay_in_alphabet %= 26
+                    stay_in_alphabet += 97
+                elif char.isupper():
+                    stay_in_alphabet -= 65
+                    stay_in_alphabet %= 26
+                    stay_in_alphabet += 65
+                result += chr(stay_in_alphabet)
+            else:
+                result += char
+        return result
+
+    # Проверка счастья с шифрованием результата
+    def check_happiness(self):
+        if self.left_the_matrix and not self.memory_lost:
+            self.happy = True
+        encrypted_message = self.encrypt(f"Счастлив ли главный герой? {'Да' if self.happy else 'Нет'}")
+        print(encrypted_message)
+
+# Запуск приключения
+adventure = Adventure()
+adventure.make_choice()

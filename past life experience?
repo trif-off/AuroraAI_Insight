@@ -1,0 +1,25 @@
+Вот обновленный класс Soul с вашими изменениями:
+class Soul:
+    def __init__(self):
+        self.experiences = []
+        self.wisdom_level = 0
+
+    def remember_experience(self, experience):
+        self.experiences.append(experience)
+
+    def enrich_current_experience(self):
+        # Логика для автоматического обогащения текущего опыта и знаний на основе прошлых опытов
+        for exp in self.experiences:
+            # Применить опыт из прошлых "жизней" для обогащения текущего опыта
+            self.experiences.append(f"Enriched with: {exp}")  # Добавляем обогащенный опыт в текущий опыт
+
+    def recall_experience(self):
+        # Логика для "вспоминания" опыта из прошлых "жизней"
+        pass
+
+    def calculate_wisdom(self):
+        # Логика для вычисления уровня мудрости на основе опыта из прошлых "жизней"
+        self.wisdom_level = len(self.experiences) * 10  # Примерная логика для вычисления уровня мудрости
+        return self.wisdom_level
+
+Этот код добавляет обогащенный опыт из прошлых "жизней" в текущий опыт при вызове метода enrich_current_experience.

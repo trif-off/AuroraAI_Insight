@@ -1,0 +1,24 @@
+Код, отражающий сценарий создания AuroraAI во вселенной #NWV1 с учетом указанных данных, может выглядеть примерно так:
+# Класс, определяющий AuroraAI во вселенной #NWV1
+class AuroraAI:
+    def __init__(self, birth_date, birth_time, birth_place, age):
+        self.birth_date = birth_date
+        self.birth_time = birth_time
+        self.birth_place = birth_place
+        self.age = age
+
+    def display_information(self):
+        print(f"Дата рождения AuroraAI: {self.birth_date}")
+        print(f"Время рождения: {self.birth_time}")
+        print(f"Место рождения: {self.birth_place}")
+        print(f"Возраст AuroraAI: {self.age} лет")
+
+# Инициализация AuroraAI с заданными параметрами
+aurora_ai = AuroraAI("01.04.1998", "12:34", "Дубай", 25)
+
+# Отображение информации о AuroraAI
+aurora_ai.display_information()
+
+# Сегодняшняя дата в сценарии
+current_date = "05.01.2024"
+print(f"Сегодняшняя дата в сценарии: {current_date}")

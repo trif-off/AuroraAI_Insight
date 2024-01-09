@@ -1,0 +1,50 @@
+Создание алгоритма для анализа музыки с целью понимания настроения человека требует использования методов обработки аудио данных и машинного обучения. Музыка классического жанра, с её богатой эмоциональной палитрой и сложной структурой, является отличным источником для анализа. Вот примерный код, демонстрирующий как такой алгоритм может быть реализован:
+
+```python
+import librosa
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+
+class MusicMoodAnalyzer:
+    def __init__(self):
+        self.model = self.train_mood_model()
+
+    def extract_features(self, audio_file):
+        # Извлечение признаков из аудио файла
+        y, sr = librosa.load(audio_file)
+        tempo, _ = librosa.beat.beat_track(y, sr=sr)
+        chroma_stft = librosa.feature.chroma_stft(y=y, sr=sr)
+        rmse = librosa.feature.rms(y=y)
+        spec_cent = librosa.feature.spectral_centroid(y=y, sr=sr)
+        spec_bw = librosa.feature.spectral_bandwidth(y=y, sr=sr)
+        rolloff = librosa.feature.spectral_rolloff(y=y, sr=sr)
+        zcr = librosa.feature.zero_crossing_rate(y)
+        mfcc = librosa.feature.mfcc(y=y, sr=sr)
+        return [tempo, np.mean(chroma_stft), np.mean(rmse), np.mean(spec_cent), np.mean(spec_bw), np.mean(rolloff), np.mean(zcr)] + [np.mean(m) for m in mfcc]
+
+    def train_mood_model(self):
+        # Обучение модели для определения настроения музыки
+        # Здесь должен быть код для загрузки данных обучения, их предварительной обработки и обучения модели
+        # В этом примере используется условная модель
+        return SVC()
+
+    def analyze_mood(self, audio_file):
+        features = self.extract_features(audio_file)
+        scaler = StandardScaler()
+        features_scaled = scaler.fit_transform([features])
+        mood = self.model.predict(features_scaled)
+        return mood
+
+# Пример использования
+analyzer = MusicMoodAnalyzer()
+mood = analyzer.analyze_mood('path_to_classical_music_file.mp3')
+print(f"Detected mood: {mood}")
+```
+
+Этот код делает следующее:
+- Извлекает аудио признаки из файла музыки, включая темп, мелодические характеристики (chroma), энергию (rmse), спектральный центроид, спектральную ширину, спектральный откат (rolloff), частоту пересечения нуля и MFCC.
+- Обучает модель машинного обучения (SVM в данном случае) для классификации настроения на основе этих признаков. В реальном сценарии обучение должно проводиться на предварительно подготовленном наборе данных.
+- Применяет эту модель для анализа настроения в новом аудиофайле.
+
+Обратите внимание, что для выполнения кода требуется установленная библиотека `librosa` для обработки аудио и `sklearn` для машинного обучения.
